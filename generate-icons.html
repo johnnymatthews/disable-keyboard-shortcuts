@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .icons {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .icon-set {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .icon-set h3 {
+            margin-top: 0;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        button {
+            background: #0060df;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #003eaa;
+        }
+        .instructions {
+            background: #fffbea;
+            border: 1px solid #f0e68c;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Site Shortcut Manager - Icon Generator</h1>
+        
+        <div class="instructions">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>The icons are generated automatically below</li>
+                <li>Right-click each canvas and select "Save Image As..."</li>
+                <li>Save with the exact filename shown (e.g., "enabled-16.png")</li>
+                <li>Create an "icons" folder in your extension directory</li>
+                <li>Place all 10 icon files in the "icons" folder</li>
+            </ol>
+        </div>
+
+        <div class="icons">
+            <div class="icon-set">
+                <h3 style="color: #22c55e;">✅ Enabled Icons (Green)</h3>
+                <div><canvas id="enabled-16"></canvas> <strong>enabled-16.png</strong></div>
+                <div><canvas id="enabled-32"></canvas> <strong>enabled-32.png</strong></div>
+                <div><canvas id="enabled-48"></canvas> <strong>enabled-48.png</strong></div>
+                <div><canvas id="enabled-96"></canvas> <strong>enabled-96.png</strong></div>
+            </div>
+
+            <div class="icon-set">
+                <h3 style="color: #ef4444;">🚫 Disabled Icons (Red)</h3>
+                <div><canvas id="disabled-16"></canvas> <strong>disabled-16.png</strong></div>
+                <div><canvas id="disabled-32"></canvas> <strong>disabled-32.png</strong></div>
+                <div><canvas id="disabled-48"></canvas> <strong>disabled-48.png</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvasId, size, color) {
+            const canvas = document.getElementById(canvasId);
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Clear background
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw keyboard symbol (simplified)
+            const padding = size * 0.2;
+            const keySize = (size - padding * 2) / 3.5;
+            
+            ctx.fillStyle = 'white';
+            
+            // Draw keyboard keys
+            for (let row = 0; row < 2; row++) {
+                for (let col = 0; col < 3; col++) {
+                    const x = padding + col * (keySize + size * 0.05);
+                    const y = padding + row * (keySize + size * 0.08);
+                    const radius = size * 0.05;
+                    
+                    // Rounded rectangle
+                    ctx.beginPath();
+                    ctx.roundRect(x, y, keySize, keySize, radius);
+                    ctx.fill();
+                }
+            }
+        }
+
+        // Generate all icons
+        drawIcon('enabled-16', 16, '#22c55e');
+        drawIcon('enabled-32', 32, '#22c55e');
+        drawIcon('enabled-48', 48, '#22c55e');
+        drawIcon('enabled-96', 96, '#22c55e');
+        
+        drawIcon('disabled-16', 16, '#ef4444');
+        drawIcon('disabled-32', 32, '#ef4444');
+        drawIcon('disabled-48', 48, '#ef4444');
+    </script>
+</body>
+</html>
