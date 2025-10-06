@@ -10,3 +10,11 @@ Obviously option #2 is the best. It's important to note that built-in Firefox sh
 ## In alpha
 
 This whole project is in it's super early stages. As such, I'm not gonna tell you how to install it. This is so people don't fuck up their browser unintentionally. However, if you know how to install custom Firefox extensions that haven't gone through the Firefox Extension Store, feel free to give this a go.
+
+## Todo
+
+Here's a list of stuff that I wanna implement. There's a solid chance that I don't get around to them though...
+
+- [ ] Remember settings per site (i.e. disbale keyboard shortcuts for websites A, B, and C).
+- [ ] Disable customization of specific keyboard shortcuts (i.e. `CMD + C` is off limits, but `CMD + V` is usable).
+- [ ] Import/export settings.
